@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var hrttpRequest = null;
+	function getXMLRequest() {
+		if(window.ActiveXObject) {
+			try{
+				return new ActiveXObject("Msxml2.XMLHTTP");
+			}catch(e){
+				try {
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				}catch(e1){return null;}
+			}
+		}else if(window.XMLHttpRequest){
+			return new XMLHttpRequest();
+		}else {
+			return null;
+		}
+	}
+	httpRequest = getXMLHttpRequest();
+	httpRequest.open("GET","/test.txt",true);
+	httpRequest.send(null);
+	
+	
+	httpRequest = getXMLHttpRequest();
+	httpRequest.onreadystatechange = callBackFunction;
+	httpRequest.open("GET","/test.jsp",true);
+	httpRequest.send(null);
+	
+	function callBackFunction() {
+		
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

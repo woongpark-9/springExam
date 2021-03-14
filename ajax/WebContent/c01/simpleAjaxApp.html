@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+var httpRequest = null;
+function getXMLHttpRequest() {
+	if(window.ActiveXObject) {
+		try{
+			return new ActiveXObject("Msxml2.XMLHTTP");
+		}catch(e){
+			try {
+				return new ActiveXObject("Microsoft.XMLHTTP");
+			}catch(e1){return null;}
+		}
+	}else if(window.XMLHttpRequest){
+		return new XMLHttpRequest();
+	}else {
+		return null;
+	}
+}
+function load(url) {
+	httpRequest = getXMLHttpRequest();
+	httpRequest.onreadystatechange = viewMessage;
+	httpRequest.open("GET",url,true);
+	httpRequest.send(null);
+}
+function viewMessage() {
+	if(httpRequest.readyState == 4) {
+		if(httpRequest.status == 200) {
+			alert(httpRequest.responseText);
+		}else {
+			alert("실패 : "+httpRequest.status);
+		}
+	}
+}
+</script>
+<body>
+<input type="button" value="simple.txt" onclick="load('simple.txt')"/>
+</body>
+</html>
